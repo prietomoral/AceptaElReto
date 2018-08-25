@@ -37,7 +37,7 @@ public class InternetEnElMetro {
 			else
 				System.out.println("NO");
 
-		} // for casos
+		}
 
 		sc.close();
 		System.exit(0);
