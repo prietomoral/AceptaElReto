@@ -13,31 +13,31 @@ public class InternetEnElMetro {
 		int numCasos = Integer.valueOf(sc.nextLine());
 
 		for (int prueba = 0; prueba < numCasos; prueba++) {
-			System.out.println("Longitud del tunel y Numero de Antenas");
+			System.out.println("Longitud del tunel y Numero de Antenas:");
 			entrada = sc.nextLine().split(" ");
 			System.out.println("Longitud Tunel:" + entrada[0]);
 			System.out.println("Numero de Antenas:" + entrada[1]);
 
-			String[] antenasDistanciaCobertura = new String[Integer.valueOf(entrada[1])];
-			System.out.println("Lonitud y Distancias");
-			antenasDistanciaCobertura = sc.nextLine().split(" ");
-			boolean coberMin = false;
+			String[] arrayAntenas = new String[Integer.valueOf(entrada[1])];
+			System.out.println("Por cada antena: longitug al inicio y cobertura");
+			arrayAntenas = sc.nextLine().split(" ");
 			int coberMax = 0;
-			for (int i = 0; i < antenasDistanciaCobertura.length; i = i + 2) {
-				// Distancia mayor que la cobertura --> mirar otra antena
-				if (!coberMin && Integer.valueOf(antenasDistanciaCobertura[0])
-						- Integer.valueOf(antenasDistanciaCobertura[1]) > 0) {
-					continue;
-				} else {
-					coberMin = true;
-					coberMax = Integer.valueOf(antenasDistanciaCobertura[0])
-							+ Integer.valueOf(antenasDistanciaCobertura[1]);
+
+			// buscamos que alguna antena cubra la parte inicial del tunel
+			int i = 0;
+			while (i < arrayAntenas.length - 1) {
+				if (Integer.valueOf(arrayAntenas[i]) - Integer.valueOf(arrayAntenas[i + 1]) <= coberMax) {
+					coberMax = Integer.valueOf(arrayAntenas[i + 1]) + Integer.valueOf(arrayAntenas[i]);
 				}
-				
-				System.out.println(antenasDistanciaCobertura[i]);
+				i = i + 2;
 			}
 
-		}
+			if (coberMax >= Integer.valueOf(entrada[0]))
+				System.out.println("SI");
+			else
+				System.out.println("NO");
+
+		} // for casos
 
 		sc.close();
 		System.exit(0);
