@@ -4,19 +4,16 @@ public class InternetMetro {
 	static java.util.Scanner sc;
 
 	public static void casosdeprueba() {
-//		System.out.println("Longitud del tunel y Numero de Antenas:");
-		String[] entrada = sc.nextLine().split(" ");
-//		System.out.println("Longitud Tunel:" + entrada[0]);
-//		System.out.println("Numero de Antenas:" + entrada[1]);
+		String[] entrada = new String[2];
+		entrada = sc.nextLine().split(" ");
 		int longitudTunel = Integer.valueOf(entrada[0]);
-		int numAntenas = Integer.valueOf(entrada[1]);
-		entrada = new String[Integer.valueOf(entrada[1])];
-//		System.out.println("Por cada antena: posicion y cobertura: ");
+//		int numAntenas = Integer.valueOf(entrada[1]);
+//		entrada = new String[Integer.valueOf(entrada[1])];
 		entrada = sc.nextLine().split(" ");
 		int coberMax = 0;
 
 		int i = 0;
-		while (i < numAntenas * 2) {
+		while (i < entrada.length) {
 			if (Integer.valueOf(entrada[i]) - Integer.valueOf(entrada[i + 1]) <= coberMax
 					&& coberMax < Integer.valueOf(entrada[i + 1]) + Integer.valueOf(entrada[i])) {
 				coberMax = Integer.valueOf(entrada[i + 1]) + Integer.valueOf(entrada[i]);
