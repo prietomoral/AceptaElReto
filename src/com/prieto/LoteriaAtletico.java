@@ -25,7 +25,8 @@ public class LoteriaAtletico {
 		for (int i = 0; i < numcasos; i++) {
 			casosdeprueba();
 		}
-
+		sc.close();
+		System.exit(0);
 	}
 
 }

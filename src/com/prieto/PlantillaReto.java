@@ -18,7 +18,8 @@ public class PlantillaReto {
 		for (int i = 0; i < numcasos; i++) {
 			casosdeprueba();
 		}
-
+		in.close();
+		System.exit(0);
 	}
 
 }
