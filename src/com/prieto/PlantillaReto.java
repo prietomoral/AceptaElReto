@@ -5,14 +5,14 @@ public class PlantillaReto {
 	
 	
 	public static void casosdeprueba() {
-		Integer n = in.nextInt();
-	    System.out.println(n);
+		int n = in.nextInt();
+	   
 	}
 	
 	
 	
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
+		
 		in = new java.util.Scanner(System.in);
 		int numcasos = in.nextInt();
 		for (int i = 0; i < numcasos; i++) {
