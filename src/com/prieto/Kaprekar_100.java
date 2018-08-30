@@ -1,8 +1,8 @@
 package com.prieto;
 
-import java.lang.reflect.Array;
+
 import java.util.Arrays;
-import java.util.Collections;
+
 
 public class Kaprekar_100 {
 	static java.util.Scanner sc;
