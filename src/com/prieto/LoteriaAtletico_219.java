@@ -1,6 +1,6 @@
 package com.prieto;
 
-public class LoteriaAtletico {
+public class LoteriaAtletico_219 {
 	static java.util.Scanner sc;
 
 	public static void casosdeprueba() {

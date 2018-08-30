@@ -1,6 +1,6 @@
 package com.prieto;
 
-public class InternetMetro {
+public class InternetMetro_382 {
 	static java.util.Scanner sc;
 
 	public static void casosdeprueba() {
