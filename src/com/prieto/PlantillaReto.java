@@ -1,11 +1,11 @@
 package com.prieto;
 
 public class PlantillaReto {
-	static java.util.Scanner in;
+	static java.util.Scanner sc;
 	
 	
 	public static void casosdeprueba() {
-		int n = in.nextInt();
+		int n = sc.nextInt();
 	   
 	}
 	
@@ -13,12 +13,12 @@ public class PlantillaReto {
 	
 	public static void main(String[] args) {
 		
-		in = new java.util.Scanner(System.in);
-		int numcasos = in.nextInt();
+		sc = new java.util.Scanner(System.in);
+		int numcasos = sc.nextInt();
 		for (int i = 0; i < numcasos; i++) {
 			casosdeprueba();
 		}
-		in.close();
+		sc.close();
 		System.exit(0);
 	}
 
