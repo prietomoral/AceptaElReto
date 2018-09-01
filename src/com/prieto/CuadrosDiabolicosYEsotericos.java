@@ -1,5 +1,7 @@
 package com.prieto;
 
+import java.util.Arrays;
+
 public class CuadrosDiabolicosYEsotericos {
     static java.util.Scanner sc;
 
@@ -9,14 +11,17 @@ public class CuadrosDiabolicosYEsotericos {
 
     static int cm2 = 0;
 
-    static int sumaTotalMatriz = 0; // la usare para validar la condicion 1 - esoterico
+    static int[] vector = null; // la usare para validar la condicion 1 - esoterico
 
     private static void llenarMatriz(int n) {
         matriz = new int[n][n];
+        vector = new int[n * n];
+        int k = 0;
         for (int i = 0; i < matriz.length; i++) {
             for (int j = 0; j < matriz.length; j++) {
                 matriz[i][j] = sc.nextInt();
-                sumaTotalMatriz = sumaTotalMatriz + matriz[i][j];
+                vector[k] = matriz[i][j];
+                k++;
             }
 
         }
@@ -39,7 +44,6 @@ public class CuadrosDiabolicosYEsotericos {
 
         System.out.println(cm);
         System.out.println(cm2);
-        System.out.println(sumaTotalMatriz);
     }
 
     private static boolean diabolico() {
@@ -70,13 +74,12 @@ public class CuadrosDiabolicosYEsotericos {
 
     private static boolean esoterico(int n) {
         // condicion 1 - contiene todos los numero de 1 a n*n
-        int sumaNumeros = 0;
-        for (int i = 1; i <= n * n; i++) {
-            sumaNumeros = sumaNumeros + i;
+        Arrays.sort(vector);
+        for (short numero = 1; numero <= n*n; numero++){
+            if (numero != vector[numero - 1]) 
+                return false;
         }
 
-        if (sumaNumeros != sumaTotalMatriz)
-            return false;
         // condicion 2 - suma de sus esquinas igual a cm2
         int esquinas = (matriz[0][0] + matriz[n - 1][0] + matriz[0][n - 1] + matriz[n - 1][n - 1]);
         if (esquinas != cm2) {
