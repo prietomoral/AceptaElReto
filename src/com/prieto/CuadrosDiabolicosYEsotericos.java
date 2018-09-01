@@ -9,11 +9,14 @@ public class CuadrosDiabolicosYEsotericos {
 
     static int cm2 = 0;
 
+    static int sumaTotalMatriz = 0; // la usare para validar la condicion 1 - esoterico
+
     private static void llenarMatriz(int n) {
         matriz = new int[n][n];
         for (int i = 0; i < matriz.length; i++) {
             for (int j = 0; j < matriz.length; j++) {
                 matriz[i][j] = sc.nextInt();
+                sumaTotalMatriz = sumaTotalMatriz + matriz[i][j];
             }
 
         }
@@ -36,6 +39,7 @@ public class CuadrosDiabolicosYEsotericos {
 
         System.out.println(cm);
         System.out.println(cm2);
+        System.out.println(sumaTotalMatriz);
     }
 
     private static boolean diabolico() {
@@ -48,25 +52,52 @@ public class CuadrosDiabolicosYEsotericos {
                 if (i == j) {
                     diagonal = diagonal + matriz[i][j];
                 }
-                if (i+j == matriz.length-1) {
+                if (i + j == matriz.length - 1) {
                     diagonalInversa = diagonalInversa + matriz[i][j];
                 }
                 totalFila = totalFila + matriz[i][j];
-                totalCol = totalCol +  matriz[j][i];
+                totalCol = totalCol + matriz[j][i];
             }
             if (totalFila != cm || totalCol != cm) {
                 return false;
             }
             totalFila = 0;
-            totalCol=0;
+            totalCol = 0;
         }
-        
-        
-        return (diagonal == cm && diagonalInversa==cm);
+
+        return (diagonal == cm && diagonalInversa == cm);
     }
 
-    private static boolean esoterico() {
-        return false;
+    private static boolean esoterico(int n) {
+        // condicion 1 - contiene todos los numero de 1 a n*n
+        int sumaNumeros = 0;
+        for (int i = 1; i <= n * n; i++) {
+            sumaNumeros = sumaNumeros + i;
+        }
+
+        if (sumaNumeros != sumaTotalMatriz)
+            return false;
+        // condicion 2 - suma de sus esquinas igual a cm2
+        int esquinas = (matriz[0][0] + matriz[n - 1][0] + matriz[0][n - 1] + matriz[n - 1][n - 1]);
+        if (esquinas != cm2) {
+            return false;
+        }
+        // condicion 3 n es impar
+        if (n % 2 != 0) {
+            // suma de la mitad de los laterales es cm2 y la casilla central tambien
+            int mitadLaterales = (matriz[0][n / 2] + matriz[n / 2][0] + matriz[n / 2][n - 1] + matriz[n - 1][n / 2]);
+            int central = (matriz[n / 2][n / 2]) * 4;
+            return (mitadLaterales == cm2 && central == cm2);
+        } else
+        // condicion 4 n es par
+        {
+            // suma de la mitad de las 2 casillas laterales es 2*cm2 y las 4 casillas centrales tambien
+            int mitadesLaterales = (matriz[0][n / 2] + matriz[0][n / 2 - 1] + matriz[n / 2][0] + matriz[n / 2 - 1][0] + matriz[n / 2][n - 1]
+                    + matriz[n / 2 - 1][n - 1] + matriz[n - 1][n / 2] + matriz[n - 1][n / 2 - 1]);
+            int centrales = (matriz[n / 2][n / 2] + matriz[n / 2 - 1][n / 2 - 1] + matriz[n / 2 - 1][n / 2] + matriz[n / 2][n / 2 - 1]);
+            return (mitadesLaterales == 2 * cm2 && centrales == cm2);
+        }
+
     }
 
     public static void main(String[] args) {
@@ -78,15 +109,16 @@ public class CuadrosDiabolicosYEsotericos {
             imprimirMatriz();
             cmycm2(n);
             if (diabolico()) {
-                if (esoterico())
+                if (esoterico(n))
                     System.out.println("ESOTERICO");
                 else
                     System.out.println("DIABOLICO");
             } else {
                 System.out.println("NO");
             }
-           
 
+            cm = 0;
+            cm2 = 0;
             n = sc.nextInt();
         }
 
