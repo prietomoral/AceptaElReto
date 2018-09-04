@@ -1,7 +1,5 @@
 package com.prieto;
 
-import java.util.ArrayList;
-import java.util.Collections;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
@@ -41,8 +39,7 @@ public class BarJavier {
         Map<String, Double> ventas = new HashMap<String, Double>();
         String input = sc.nextLine();
         String[] entrada = null;
-      
-        while (input.length() > 0) {
+        while (!input.equals("")) {
             entrada = input.split(" ");
             double valorTotal = 0;
             int numVentas = 0;
@@ -69,33 +66,54 @@ public class BarJavier {
                 categoria = entrada[0];
                 valor = Double.parseDouble(entrada[1]);
             }
+            // Tenemos el diccionario Ventas relleno, ahora hay que determinar el maximo ,minimo, empate maximo o empate minimo
 
-            ArrayList<Double> valores = new ArrayList<Double>(ventas.values());
-            Collections.sort(valores);
-
-            String minCat = "";
-            String maxCat = "";
-            if (valores.get(0).equals(valores.get(1))) {
-                minCat = "EMPATE";
-            }
-            if (valores.get(3).equals(valores.get(4))) {
-                maxCat = "EMPATE";
-            }
-
-            double max = (double) Collections.max(valores);
-            double min = (double) Collections.min(valores);
-
+            double maximo = 0.0;
+            double minimo = 0.0;
+            String maxCategoria = "";
+            String minCategoria = "";
+            boolean empateminimo = false;
+            boolean empatemaximo = false;
             Iterator<String> it = ventas.keySet().iterator();
-            while (it.hasNext() && (minCat.equals("") || maxCat.equals(""))) {
+            for (int i = 0; i < 5; i++) {
                 String key = (String) it.next();
-                if (minCat.equals("") && ventas.get(key) == min) {
-                    minCat = key;
-                }
-                if (maxCat.equals("") && ventas.get(key) == max) {
-                    maxCat = key;
+                if (i == 0) {
+                    maximo = ventas.get(key);
+                    minimo = ventas.get(key);
+                    minCategoria = key;
+                    maxCategoria = key;
+                } else {
+                    if (ventas.get(key) < minimo) {
+                        minimo = ventas.get(key);
+                        minCategoria = key;
+                        empateminimo = false;
+                    } else if (ventas.get(key) > maximo) {
+                        maximo = ventas.get(key);
+                        maxCategoria = key;
+                        empatemaximo = false;
+                    } else if (ventas.get(key) == minimo)
+                        empateminimo = true;
+                    else if (ventas.get(key) == maximo)
+                        empatemaximo = true;
                 }
             }
 
+            if (minimo == maximo) {
+                empateminimo = true;
+                empatemaximo = true;
+            }
+
+            if (empatemaximo) {
+                System.out.print("EMPATE#");
+            } else {
+                System.out.print(convertirCodigoACategoria(maxCategoria) + "#");
+            }
+            if (empateminimo) {
+                System.out.print("EMPATE#");
+            } else {
+                System.out.print(convertirCodigoACategoria(minCategoria) + "#");
+            }
+            
             String mayorMediaComidas = "NO";
             double resultadoTotalComidas = 0;
             if (numVentasComidas > 0)
@@ -103,14 +121,12 @@ public class BarJavier {
             double resultadoTotal = valorTotal / numVentas;
             if (resultadoTotalComidas > resultadoTotal)
                 mayorMediaComidas = "SI";
-            if (!maxCat.equals("EMPATE"))
-                maxCat = convertirCodigoACategoria(maxCat);
-            if (!minCat.equals("EMPATE"))
-                minCat = convertirCodigoACategoria(minCat);
-
-            System.out.println(maxCat + "#" + minCat + "#" + mayorMediaComidas);
-            input = sc.nextLine();
             
+            System.out.println(mayorMediaComidas);
+            
+
+            input = sc.nextLine();
+
         }
         sc.close();
         System.exit(0);
