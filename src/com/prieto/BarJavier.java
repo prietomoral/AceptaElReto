@@ -36,25 +36,25 @@ public class BarJavier {
     public static void main(String[] args) {
 
         sc = new java.util.Scanner(System.in);
-        Map<String, Double> ventas = new HashMap<String, Double>();
+        Map<String, Float> ventas = new HashMap<String, Float>();
         String input = sc.nextLine();
         String[] entrada = null;
         while (!input.equals("")) {
             entrada = input.split(" ");
-            double valorTotal = 0;
+            float valorTotal = 0;
             int numVentas = 0;
-            double valorTotalComidas = 0;
+            float valorTotalComidas = 0;
             int numVentasComidas = 0;
-            ventas.put("D", 0.0);
-            ventas.put("A", 0.0);
-            ventas.put("M", 0.0);
-            ventas.put("I", 0.0);
-            ventas.put("C", 0.0);
+            ventas.put("D", (float) 0);
+            ventas.put("A", (float) 0);
+            ventas.put("M", (float) 0);
+            ventas.put("I", (float) 0);
+            ventas.put("C", (float) 0);
             String categoria = entrada[0];
-            double valor = Double.parseDouble(entrada[1]);
+            float valor = Float.parseFloat(entrada[1]);
 
             while (!(categoria.equals("N") && valor == 0)) {
-                ventas.put(categoria, ventas.get(categoria) + valor);
+                ventas.put(categoria, (float) (ventas.get(categoria) + valor));
                 valorTotal = valorTotal + valor;
                 numVentas++;
                 if (categoria.equals("A")) {
@@ -64,7 +64,7 @@ public class BarJavier {
 
                 entrada = sc.nextLine().split(" ");
                 categoria = entrada[0];
-                valor = Double.parseDouble(entrada[1]);
+                valor = Float.parseFloat(entrada[1]);
             }
             // Tenemos el diccionario Ventas relleno, ahora hay que determinar el maximo ,minimo, empate maximo o empate minimo
 
@@ -115,10 +115,10 @@ public class BarJavier {
             }
             
             String mayorMediaComidas = "NO";
-            double resultadoTotalComidas = 0;
+            float resultadoTotalComidas = 0;
             if (numVentasComidas > 0)
                 resultadoTotalComidas = valorTotalComidas / numVentasComidas;
-            double resultadoTotal = valorTotal / numVentas;
+            float resultadoTotal = valorTotal / numVentas;
             if (resultadoTotalComidas > resultadoTotal)
                 mayorMediaComidas = "SI";
             
