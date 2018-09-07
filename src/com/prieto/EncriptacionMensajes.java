@@ -12,38 +12,49 @@ public class EncriptacionMensajes {
     public static int obtenerDesplazamiento(char caracter) {
         int pos = 0;
 
-        while (ABECEDARIO.charAt(pos) != caracter) {
-            pos++;
-        }
+        pos = obtenerPosicionLetra(caracter);
         return POS_LETRA_P - pos;
     }
 
+//    public static int obtenerPosicionLetra(char letra) {
+//        int pos = 0;
+//        letra = Character.toLowerCase(letra);
+//        boolean enc = false;
+//        while (!enc && pos < ABECEDARIO.length()) {
+//            if (ABECEDARIO.charAt(pos) == letra) {
+//                enc = true;
+//            }
+//            pos++;
+//        }
+//        if (!enc)
+//            pos = -1;
+//
+//        return pos;
+//    }
+
     public static int obtenerPosicionLetra(char letra) {
-        int pos = 0;
-        letra = Character.toLowerCase(letra);
-        while (ABECEDARIO.charAt(pos) != letra) {
-            pos++;
-        }
-        return pos;
+        int posicion = ABECEDARIO.indexOf(letra);
+        return posicion;
     }
 
     public static String traducir(String linea, int desplazamiento) {
         String lineaTraducida = "";
         int pos = 0;
         char caracter;
+
         for (int i = 1; i < linea.length(); i++) {
-            if (Character.isLetter(linea.charAt(i))) {
-                pos = obtenerPosicionLetra(linea.charAt(i)) + desplazamiento;
-                if (pos >= ABECEDARIO.length()) {
-                    pos = pos - ABECEDARIO.length();
-                }
-                caracter = linea.charAt(i);
+
+            pos = (obtenerPosicionLetra(Character.toLowerCase(linea.charAt(i))) + desplazamiento) % ABECEDARIO.length();
+
+            caracter = linea.charAt(i);
+            if (pos >= 0) {
                 if (Character.isUpperCase(caracter))
                     caracter = Character.toUpperCase(ABECEDARIO.charAt(pos));
                 else
                     caracter = ABECEDARIO.charAt(pos);
-                lineaTraducida = lineaTraducida + caracter;
             }
+            lineaTraducida = lineaTraducida + caracter;
+
         }
         return lineaTraducida;
     }
@@ -62,10 +73,14 @@ public class EncriptacionMensajes {
 
     public static String casosdeprueba() {
         String linea = sc.nextLine();
-        int desplazamiento = obtenerDesplazamiento(linea.charAt(0));
-        linea = traducir(linea, desplazamiento);
-        if (!linea.equals(FIN)) {
-            System.out.println(contarVocales(linea.toLowerCase()));
+        int desplazamiento = 0;
+
+        if (Character.isLetter(linea.charAt(0)) && obtenerPosicionLetra(linea.charAt(0)) >= 0) {
+            desplazamiento = obtenerDesplazamiento(linea.charAt(0));
+            linea = traducir(linea, desplazamiento);
+            if (!linea.equals(FIN)) {
+                System.out.println(contarVocales(linea.toLowerCase()));
+            }
         }
         return linea;
     }
