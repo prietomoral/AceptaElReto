@@ -5,29 +5,53 @@ public class EncriptacionMensajes {
 
     static String abecedario = "abcdefghijklmnopqrstuvwxyz";
 
+    static final int POS_LETRA_P = 15;
+
     public static int obtenerDesplazamiento(char caracter) {
-        int pos = 15;
-        int cont = 0;
-        char primeraLetra = 'p';
-        while (!abecedario.substring(pos, 1).equals(primeraLetra)) {
-            if (pos == abecedario.length()) {
-                pos = 0;
-            }
-            cont++;
+        int pos = 0;
+
+        while (abecedario.charAt(pos) != caracter) {
+            pos++;
         }
-        return cont;
+        return POS_LETRA_P - pos;
+    }
+
+    public static int obtenerPosicionLetra(char letra) {
+        int pos = 0;
+        letra = Character.toLowerCase(letra);
+        while (abecedario.charAt(pos) != letra) {
+            pos++;
+        }
+        return pos;
     }
 
     public static String traducir(String linea, int desplazamiento) {
-
-        return linea;
+        String lineaTraducida = "";
+        int pos = 0;
+        char caracter;
+        for (int i = 1; i < linea.length(); i++) {
+            if (Character.isLetter(linea.charAt(i))) {
+                pos = obtenerPosicionLetra(linea.charAt(i)) + desplazamiento;
+                if (pos >= abecedario.length()) {
+                    pos = pos - abecedario.length();
+                }
+                caracter = linea.charAt(i);
+                if (Character.isUpperCase(caracter))
+                    caracter = Character.toUpperCase(abecedario.charAt(pos));
+                else
+                    caracter = abecedario.charAt(pos);
+                lineaTraducida = lineaTraducida + caracter;
+            }
+        }
+        return lineaTraducida;
     }
 
     public static int contarVocales(String linea) {
         int contador = 0;
-        for (int x = 0; x < abecedario.length(); x++) {
-            if ((abecedario.charAt(x) == 'a') || (abecedario.charAt(x) == 'e') || (abecedario.charAt(x) == 'i')
-                    || (abecedario.charAt(x) == 'o') || (abecedario.charAt(x) == 'u')) {
+        linea = linea.toLowerCase();
+        for (int x = 0; x < linea.length(); x++) {
+            if ((linea.charAt(x) == 'a') || (linea.charAt(x) == 'e') || (linea.charAt(x) == 'i') || (linea.charAt(x) == 'o')
+                    || (linea.charAt(x) == 'u')) {
                 contador++;
             }
         }
@@ -35,10 +59,12 @@ public class EncriptacionMensajes {
     }
 
     public static String casosdeprueba() {
-        String linea = sc.nextLine().toLowerCase();
+        String linea = sc.nextLine();
         int desplazamiento = obtenerDesplazamiento(linea.charAt(0));
         linea = traducir(linea, desplazamiento);
-        System.out.println(contarVocales(linea.toLowerCase()));
+        if (!linea.equals("FIN")) {
+            System.out.println(contarVocales(linea.toLowerCase()));
+        }
         return linea;
     }
 
@@ -46,7 +72,7 @@ public class EncriptacionMensajes {
 
         sc = new java.util.Scanner(System.in);
         String mensaje = "";
-        while (!mensaje.toLowerCase().equals("fin")) {
+        while (!mensaje.equals("FIN")) {
             mensaje = casosdeprueba();
         }
         sc.close();
