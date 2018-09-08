@@ -3,34 +3,22 @@ package com.prieto;
 public class EncriptacionMensajes {
     static java.util.Scanner sc;
 
-    static final String ABECEDARIO = "abcdefghijklmnopqrstuvwxyz";
+    private static final String ABECEDARIO = "abcdefghijklmnopqrstuvwxyz";
 
-    static final int POS_LETRA_P = 15;
+    private static final byte P_MAYUS = (byte) 'P';
 
-    static final String FIN = "FIN";
+    private static final byte P_MINUS = (byte) 'p';
 
-    public static int obtenerDesplazamiento(char caracter) {
-        int pos = 0;
+    private static final String FIN = "FIN";
 
-        pos = obtenerPosicionLetra(caracter);
-        return POS_LETRA_P - pos;
+    public static int obtenerDesplazamiento(char letra) {
+
+        if (Character.isUpperCase(letra)) {
+            return (short) (P_MAYUS - letra);
+        } else {
+            return (short) (P_MINUS - letra);
+        }
     }
-
-//    public static int obtenerPosicionLetra(char letra) {
-//        int pos = 0;
-//        letra = Character.toLowerCase(letra);
-//        boolean enc = false;
-//        while (!enc && pos < ABECEDARIO.length()) {
-//            if (ABECEDARIO.charAt(pos) == letra) {
-//                enc = true;
-//            }
-//            pos++;
-//        }
-//        if (!enc)
-//            pos = -1;
-//
-//        return pos;
-//    }
 
     public static int obtenerPosicionLetra(char letra) {
         int posicion = ABECEDARIO.indexOf(letra);
@@ -43,9 +31,7 @@ public class EncriptacionMensajes {
         char caracter;
 
         for (int i = 1; i < linea.length(); i++) {
-
             pos = (obtenerPosicionLetra(Character.toLowerCase(linea.charAt(i))) + desplazamiento) % ABECEDARIO.length();
-
             caracter = linea.charAt(i);
             if (pos >= 0) {
                 if (Character.isUpperCase(caracter))
@@ -75,7 +61,7 @@ public class EncriptacionMensajes {
         String linea = sc.nextLine();
         int desplazamiento = 0;
 
-        if (Character.isLetter(linea.charAt(0)) && obtenerPosicionLetra(linea.charAt(0)) >= 0) {
+        if (Character.isLetter(linea.charAt(0))) {
             desplazamiento = obtenerDesplazamiento(linea.charAt(0));
             linea = traducir(linea, desplazamiento);
             if (!linea.equals(FIN)) {
