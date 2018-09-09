@@ -28,7 +28,8 @@ public class BarJavier {
     public enum CodigosCategorias {
         D, A, M, I, C
     }
-
+    
+    
     static String convertirCodigoACategoria(String codigo) {
         String categoria = "";
         switch (codigo) {
