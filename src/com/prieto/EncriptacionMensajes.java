@@ -61,7 +61,7 @@ public class EncriptacionMensajes {
         String linea = sc.nextLine();
         int desplazamiento = 0;
 
-        if (Character.isLetter(linea.charAt(0))) {
+        if (linea.length()>0 && Character.isLetter(linea.charAt(0))) {
             desplazamiento = obtenerDesplazamiento(linea.charAt(0));
             linea = traducir(linea, desplazamiento);
             if (!linea.equals(FIN)) {
@@ -72,7 +72,7 @@ public class EncriptacionMensajes {
     }
 
     public static void main(String[] args) {
-
+        
         sc = new java.util.Scanner(System.in);
         String mensaje = "";
         while (!mensaje.equals(FIN)) {
