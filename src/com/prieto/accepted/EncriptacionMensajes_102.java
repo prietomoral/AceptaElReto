@@ -1,4 +1,4 @@
-package com.prieto;
+package com.prieto.accepted;
 
 public class EncriptacionMensajes_102 {
 	static java.util.Scanner sc;

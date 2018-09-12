@@ -1,4 +1,4 @@
-package com.prieto;
+package com.prieto.accepted;
 
 public class LoteriaAtletico_219 {
 	static java.util.Scanner sc;

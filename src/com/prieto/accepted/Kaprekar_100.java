@@ -1,4 +1,4 @@
-package com.prieto;
+package com.prieto.accepted;
 
 
 import java.util.Arrays;

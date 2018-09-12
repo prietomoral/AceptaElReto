@@ -1,4 +1,4 @@
-package com.prieto;
+package com.prieto.accepted;
 
 public class ConstanteMagica_120 {
 	static java.util.Scanner sc;
