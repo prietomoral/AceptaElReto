@@ -9,13 +9,42 @@ public class EncriptacionMensajes {
 
 	private static final String FIN = "FIN";
 
+	private static boolean esLetra(char letra) {
+		if ((letra > 64 && letra < 91) || (letra > 96 && letra < 123))
+			return true;
+		else
+			return false;
+	}
+
+	private static boolean esMayuscula(char letra) {
+		if (letra > 64 && letra < 91)
+			return true;
+		else
+			return false;
+	}
+
 	public static int obtenerDesplazamiento(char letra) {
 
-		if (Character.isUpperCase(letra)) {
+		if (esMayuscula(letra)) {
 			return (short) (P_MAYUS - letra);
 		} else {
 			return (short) (P_MINUS - letra);
 		}
+	}
+
+	public static char comprobarLimites(char letra) {
+		if (esMayuscula(letra)) {
+			if (letra > 90)
+				letra = (char) (letra - 26);
+			else if (letra < 65)
+				letra = (char) (letra + 26);
+		} else {
+			if (letra > 122)
+				letra = (char) (letra - 26);
+			else if (letra < 97)
+				letra = (char) (letra + 26);
+		}
+		return letra;
 	}
 
 	public static String traducir(String linea, int desplazamiento) {
@@ -24,8 +53,8 @@ public class EncriptacionMensajes {
 		for (int i = 1; i < linea.length(); i++) {
 
 			char letraTraducida = (char) (linea.charAt(i) + desplazamiento);
-						
-			System.out.println("letra Traducida:" + letraTraducida);
+			letraTraducida = comprobarLimites(letraTraducida);
+//			System.out.println("letra Traducida:" + letraTraducida);
 			if ((letraTraducida >= 65 && letraTraducida <= 90) || (letraTraducida >= 97 && letraTraducida <= 122)) {
 				lineaTraducida = lineaTraducida + letraTraducida;
 			} else {
@@ -52,9 +81,9 @@ public class EncriptacionMensajes {
 		String linea = sc.nextLine();
 		int desplazamiento = 0;
 
-		if (linea.length() > 0 && Character.isLetter(linea.charAt(0))) {
+		if (linea.length() > 0 && esLetra(linea.charAt(0))) {
 			desplazamiento = obtenerDesplazamiento(linea.charAt(0));
-			System.out.println("Desplazamiento:" + desplazamiento);
+//			System.out.println("Desplazamiento:" + desplazamiento);
 			linea = traducir(linea, desplazamiento);
 			if (!linea.equals(FIN)) {
 				System.out.println(contarVocales(linea.toLowerCase()));
