@@ -105,9 +105,10 @@ public class CuadrosDiabolicosYEsotericos {
 
     public static void main(String[] args) {
         sc = new java.util.Scanner(System.in);
-        int n = sc.nextInt();
-
-        while (n != 0) {
+        String numero = sc.nextLine();
+        int n;
+        while (numero.length()==1 && !numero.equals("0")) {
+        	n= Integer.parseInt(numero);
             llenarMatriz(n);
             imprimirMatriz();
             cmycm2(n);
