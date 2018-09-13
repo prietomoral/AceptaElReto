@@ -10,7 +10,7 @@ public class ProblemasHerencia {
     public static double f(double num) {
         double valor = 0;
         for (int i = 0; i <= n; i++) {
-            valor = valor + (polinomio[i] * Math.pow(num,(double) i));
+            valor = valor + (polinomio[i] * Math.pow(num,(double)n-i-1));
         }
         if (valor < 0)
             return 0;
@@ -25,19 +25,19 @@ public class ProblemasHerencia {
         String[] entrada = sc.nextLine().split(" ");
         int numReptangulos = Integer.parseInt(sc.nextLine());
 
-        int aux = n;
         // Creamos el polinomio
         for (int i = 0; i < entrada.length; i++) {
-            polinomio[aux] = Integer.parseInt(entrada[i]);
-            aux--;
+            polinomio[i] = Integer.parseInt(entrada[i]);
         }
 
-        double base = (double)1 / numReptangulos;
-        double areaCain = 0;
+        double base = (double)1 / (double)numReptangulos;
+        double areaCain =(double) 0;
         double altura = 0;
+        double reptangulos;
         for (int i = 0; i < numReptangulos; i++) {
-            altura = f(i) / numReptangulos;
-            areaCain = areaCain + (base * altura);
+//            altura =  f((double) i) / numReptangulos;
+        	reptangulos = ((double)base * (f((double) i) / (double)numReptangulos));
+            areaCain = areaCain + reptangulos;
         }
 
         if (Math.abs(areaCain - 0.5) <= 0.001)
