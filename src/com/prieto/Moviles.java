@@ -6,7 +6,6 @@ public class Moviles {
 	static int pesoIzdo = 0;
 
 	static int pesoDcho = 0;
-	int[] aux = new int[1];
 
 	public static boolean esBalenceado(int pi, int di, int pd, int dd, int[] p) {
 		String[] entrada;
@@ -19,7 +18,8 @@ public class Moviles {
 			int idd = Integer.parseInt(entrada[3]);
 			p[0] = pi;
 			izda = esBalenceado(ipi, idi, ipd, idd, p);
-			p[0] = ipi + ipd;
+			if (pi == 0)
+				pesoIzdo = ipi + ipd;
 		}
 
 		boolean dcha = true;
@@ -29,25 +29,27 @@ public class Moviles {
 			int ddi = Integer.parseInt(entrada[1]);
 			int dpd = Integer.parseInt(entrada[2]);
 			int ddd = Integer.parseInt(entrada[3]);
-			p[0] = pd;
+			p[1] = pd;
+
 			dcha = esBalenceado(dpi, ddi, dpd, ddd, p);
-			p[0] = dpi + dpd;
+			if (pd == 0)
+				pesoDcho = dpi + dpd;
 		}
 
-		p[0] = pi + pd;
-//        if (pi == 0) {
-//            pi = pesoIzdo;
-//        }
-//        if (pd == 0) {
-//            pd = pesoDcho;
-//        }
+		// p[0] = pi + pd;
+		if (pi == 0) {
+			pi = pesoIzdo;
+		}
+		if (pd == 0) {
+			pd = pesoDcho;
+		}
 		return izda && dcha && pi * di == pd * dd;
 	}
 
 	public static void main(String[] args) {
 
 		sc = new java.util.Scanner(System.in);
-		int[] peso = new int[1];
+		int[] peso = new int[2];
 		String[] entrada = sc.nextLine().split(" ");
 		boolean balancea;
 		while (!(entrada[0].equals("0") && entrada[1].equals("0") && entrada[2].equals("0")
