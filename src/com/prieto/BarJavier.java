@@ -168,6 +168,10 @@ public class BarJavier {
                 String categoria = entrada[0];
                 float valor = Float.parseFloat(entrada[1]);
                 casosdeprueba(categoria, valor);
+                numVentas=0;
+                numVentasComidas=0;
+                valorTotalComidas=0;
+                valorTotal=0;
             } catch (ArrayIndexOutOfBoundsException | NumberFormatException ex) {
             }
             input = sc.nextLine();
