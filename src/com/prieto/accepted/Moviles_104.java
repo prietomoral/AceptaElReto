@@ -1,11 +1,7 @@
-package com.prieto;
+package com.prieto.accepted;
 
-public class Moviles {
+public class Moviles_104 {
     static java.util.Scanner sc;
-
-    static int pesoIzdo = 0;
-
-    static int pesoDcho = 0;
 
     public static boolean esBalenceado(int[] movil) {
         String[] entrada;
@@ -16,45 +12,30 @@ public class Moviles {
         boolean izda = true;
         if (pi == 0) {
             entrada = sc.nextLine().split(" ");
-            int ipi = Integer.parseInt(entrada[0]);
-            int idi = Integer.parseInt(entrada[1]);
-            int ipd = Integer.parseInt(entrada[2]);
-            int idd = Integer.parseInt(entrada[3]);
-            movil[0] = ipi;
-            movil[1] = idi;
-            movil[2] = ipd;
-            movil[3] = idd;
+            movil[0] = Integer.parseInt(entrada[0]);
+            movil[1] = Integer.parseInt(entrada[1]);
+            movil[2] = Integer.parseInt(entrada[2]);
+            movil[3] = Integer.parseInt(entrada[3]);
 
             izda = esBalenceado(movil);
-            if (pi == 0 && pd == 0)
-                movil[4] = ipi + ipd;
-           
+            pi = movil[4];
+
         }
 
         boolean dcha = true;
         if (pd == 0) {
             entrada = sc.nextLine().split(" ");
-            int dpi = Integer.parseInt(entrada[0]);
-            int ddi = Integer.parseInt(entrada[1]);
-            int dpd = Integer.parseInt(entrada[2]);
-            int ddd = Integer.parseInt(entrada[3]);
-            movil[0] = dpi;
-            movil[1] = ddi;
-            movil[2] = dpd;
-            movil[3] = ddd;
+            movil[0] = Integer.parseInt(entrada[0]);
+            movil[1] = Integer.parseInt(entrada[1]);
+            movil[2] = Integer.parseInt(entrada[2]);
+            movil[3] = Integer.parseInt(entrada[3]);
 
             dcha = esBalenceado(movil);
-            if (pi == 0 && pd == 0)
-                movil[5] = dpi + dpd;
+            pd = movil[4];
         }
 
-        if (pi == 0) {
-            pi = movil[4];
-            movil[0]=pi;
-        }
-        if (pd == 0) {
-            pd = movil[5];
-            movil[2]=pd;
+        if (pi != 0 && pd != 0) {
+            movil[4] = pi + pd;
         }
 
         return izda && dcha && pi * di == pd * dd;
@@ -63,7 +44,7 @@ public class Moviles {
     public static void main(String[] args) {
 
         sc = new java.util.Scanner(System.in);
-        int[] movil = new int[6];
+        int[] movil = new int[5];
         String[] entrada = sc.nextLine().split(" ");
         boolean balancea;
         while (!(entrada[0].equals("0") && entrada[1].equals("0") && entrada[2].equals("0") && entrada[3].equals("0"))) {
@@ -78,7 +59,7 @@ public class Moviles {
             } else {
                 System.out.println("NO");
             }
-
+            movil[4] = 0;
             entrada = sc.nextLine().split(" ");
         }
         sc.close();
