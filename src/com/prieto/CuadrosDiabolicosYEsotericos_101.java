@@ -2,7 +2,7 @@ package com.prieto;
 
 import java.util.Arrays;
 
-public class CuadrosDiabolicosYEsotericos {
+public class CuadrosDiabolicosYEsotericos_101 {
     static java.util.Scanner sc;
 
     static int matriz[][] = null;

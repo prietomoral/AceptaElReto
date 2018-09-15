@@ -1,6 +1,6 @@
 package com.prieto;
 
-public class FiestaVerano {
+public class FiestaVerano_312 {
 	static java.util.Scanner sc;
 
 	public static double obtenerTotalPersonas(String[] tramosEdad) {

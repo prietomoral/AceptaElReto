@@ -1,6 +1,6 @@
 package com.prieto;
 
-public class ProblemasHerencia {
+public class ProblemasHerencia_103 {
     static java.util.Scanner sc;
 
     static int[] polinomio = new int[21];

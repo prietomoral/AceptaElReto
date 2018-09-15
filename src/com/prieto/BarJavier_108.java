@@ -4,7 +4,7 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
 
-public class BarJavier {
+public class BarJavier_108 {
     static java.util.Scanner sc;
 
     static Map<String, Float> ventas = new HashMap<String, Float>();
