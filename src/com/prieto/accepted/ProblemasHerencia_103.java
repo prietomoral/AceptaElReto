@@ -1,4 +1,4 @@
-package com.prieto;
+package com.prieto.accepted;
 
 public class ProblemasHerencia_103 {
     static java.util.Scanner sc;
