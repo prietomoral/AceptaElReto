@@ -9,13 +9,13 @@ public class ProblemasHerencia_103 {
 
     public static double f(double num) {
         double valor = 0;
-        for (int i = 0; i <= n; i++) {
-            valor = valor + (polinomio[i] * Math.pow(num,(double)n-i-1));
+        for (int i = 0; i < n; i++) {
+            valor = valor + (polinomio[i] * Math.pow(num, (double) n - i - 1));
         }
         if (valor < 0)
-            return 0;
+            return 0d;
         else if (valor > 1)
-            return 1;
+            return 1d;
         return valor;
 
     }
@@ -24,19 +24,19 @@ public class ProblemasHerencia_103 {
 
         String[] entrada = sc.nextLine().split(" ");
         int numReptangulos = Integer.parseInt(sc.nextLine());
-
+        n++;
         // Creamos el polinomio
         for (int i = 0; i < entrada.length; i++) {
             polinomio[i] = Integer.parseInt(entrada[i]);
         }
 
-        double base = (double)1 / (double)numReptangulos;
-        double areaCain =(double) 0;
-        double altura = 0;
+        double base = (double) 1 / (double) numReptangulos;
+        double areaCain = 0d;
+        double altura = 0d;
         double reptangulos;
         for (int i = 0; i < numReptangulos; i++) {
-//            altura =  f((double) i) / numReptangulos;
-        	reptangulos = ((double)base * (f((double) i) / (double)numReptangulos));
+            altura = f((double) i / numReptangulos);
+            reptangulos = (base * altura);
             areaCain = areaCain + reptangulos;
         }
 
