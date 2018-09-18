@@ -1,6 +1,6 @@
 package com.prieto;
 
-public class RatonesColoraos_398 {
+public class MasListosQueElHambre_398 {
     static java.util.Scanner sc;
 
     public static int obtenerTiempo(int[] pos1, int[] pos2) {
