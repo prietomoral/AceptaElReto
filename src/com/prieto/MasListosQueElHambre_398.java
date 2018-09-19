@@ -23,7 +23,7 @@ public class MasListosQueElHambre_398 {
         int segRaton2;
         int segTotales = 0;
         int segPosInicialObjetivo;
-        while (N > 0) {
+        while (N > 0 && N<100) {
             posiciones = sc.nextLine().split(" ");
             posObjetivo[0] = Integer.parseInt(posiciones[0]);
             posObjetivo[1] = Integer.parseInt(posiciones[1]);
