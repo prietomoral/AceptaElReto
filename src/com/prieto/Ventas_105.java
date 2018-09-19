@@ -4,96 +4,102 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class Ventas_105 {
-	static java.util.Scanner sc;
-	static Map<String, Double> ventas = new HashMap<String, Double>();
+    static java.util.Scanner sc;
 
-	public enum DIA_DE_SEMANA {
-		MARTES, MIERCOLES, JUEVES, VIERNES, SABADO, DOMINGO
-	}
+    static Map<String, Double> ventas = new HashMap<String, Double>();
 
-	public static void inicializarVentas() {
-		for (DIA_DE_SEMANA dia : DIA_DE_SEMANA.values()) {
-			ventas.put(dia.toString(), 0d);
-		}
-	}
+    public enum DIA_DE_SEMANA {
+        MARTES, MIERCOLES, JUEVES, VIERNES, SABADO, DOMINGO
+    }
 
-	public static void main(String[] args) {
+    public static void inicializarVentas() {
+        for (DIA_DE_SEMANA dia : DIA_DE_SEMANA.values()) {
+            ventas.put(dia.toString(), 0d);
+        }
+    }
 
-		boolean empateMinimo = false;
-		boolean empateMaximo = false;
-		double ventaMinima = 0d;
-		String diaMinimo = "";
-		double ventaMaxima = 0d;
-		String diaMaximo = "";
+    public static void main(String[] args) {
 
-		double ventaSemanal = 0d;
+        boolean empateMinimo = false;
+        boolean empateMaximo = false;
+        double ventaMinima = 0d;
+        String diaMinimo = "";
+        double ventaMaxima = 0d;
+        String diaMaximo = "";
 
-		sc = new java.util.Scanner(System.in);
-		double valor = Double.parseDouble(sc.nextLine());
+        double ventaSemanal = 0d;
 
-		while (valor != -1) {
-			inicializarVentas();
-			// leer semana de ventas
-			for (DIA_DE_SEMANA dia : DIA_DE_SEMANA.values()) {
-				ventas.put(dia.toString(), valor);
+        sc = new java.util.Scanner(System.in);
+        double valor = 0;
+     
 
-				if (dia.toString().equals("MARTES")) {
-					ventaMinima = valor;
-					ventaMaxima = valor;
-					diaMinimo = dia.toString();
-					diaMaximo = dia.toString();
-				} else if (valor < ventaMinima) {
-					ventaMinima = valor;
-					diaMinimo = dia.toString();
-					empateMinimo = false;
-				} else if (valor > ventaMaxima) {
-					ventaMaxima = valor;
-					diaMaximo = dia.toString();
-					empateMaximo = false;
-				} else if (valor == ventaMinima) {
-					empateMinimo = true;
-				} else if (valor == ventaMaxima) {
-					empateMaximo = true;
-				}
+        while (sc.hasNext()) {
+            valor = Double.parseDouble(sc.nextLine());
+            inicializarVentas();
+            // leer semana de ventas
+            for (DIA_DE_SEMANA dia : DIA_DE_SEMANA.values()) {
+                ventas.put(dia.toString(), valor);
 
-				ventaSemanal = ventaSemanal + valor;
+                if (dia.toString().equals("MARTES")) {
+                    if (valor == -1) {
+                        break;
+                    }
+                    ventaMinima = valor;
+                    ventaMaxima = valor;
+                    diaMinimo = dia.toString();
+                    diaMaximo = dia.toString();
+                } else if (valor < ventaMinima) {
+                    ventaMinima = valor;
+                    diaMinimo = dia.toString();
+                    empateMinimo = false;
+                } else if (valor > ventaMaxima) {
+                    ventaMaxima = valor;
+                    diaMaximo = dia.toString();
+                    empateMaximo = false;
+                } else if (valor == ventaMinima) {
+                    empateMinimo = true;
+                } else if (valor == ventaMaxima) {
+                    empateMaximo = true;
+                }
 
-				valor = Double.parseDouble(sc.nextLine());
-			}
+                ventaSemanal = ventaSemanal + valor;
 
-			if (ventaMinima == ventaMaxima) {
-				empateMinimo = true;
-				empateMaximo = true;
-			}
+                valor = Double.parseDouble(sc.nextLine());
+            }
 
-			// procesar semana
+            if (ventaMinima == ventaMaxima) {
+                empateMinimo = true;
+                empateMaximo = true;
+            }
 
-			if (!empateMaximo) {
-				System.out.print(diaMaximo + " ");
-			} else {
-				System.out.print("EMPATE ");
-			}
+            // procesar semana
 
-			if (!empateMinimo) {
-				System.out.print(diaMinimo + " ");
-			} else {
-				System.out.print("EMPATE ");
-			}
+            if (!empateMaximo) {
+                System.out.print(diaMaximo + " ");
+            } else {
+                System.out.print("EMPATE ");
+            }
 
-			// Ventas del Domingo > venta semanal
+            if (!empateMinimo) {
+                System.out.print(diaMinimo + " ");
+            } else {
+                System.out.print("EMPATE ");
+            }
 
-			double ventaDomingo = ventas.get("DOMINGO");
-			double ventaMediaSemanal = ventaSemanal / 6;
+            // Ventas del Domingo > venta semanal
 
-			if (ventaDomingo > ventaMediaSemanal) {
-				System.out.println("SI");
-			} else {
-				System.out.println("NO");
-			}
+            double ventaDomingo = ventas.get("DOMINGO");
+            double ventaMediaSemanal = ventaSemanal / 6;
 
-		}
-		sc.close();
-		System.exit(0);
-	}
+            if (ventaDomingo > ventaMediaSemanal) {
+                System.out.println("SI");
+            } else {
+                System.out.println("NO");
+            }
+
+        }
+        sc.close();
+        System.exit(0);
+    }
 
 }
