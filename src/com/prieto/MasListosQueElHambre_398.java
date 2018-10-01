@@ -48,7 +48,7 @@ public class MasListosQueElHambre_398 {
             N--;
         }
 
-        // Falta calcular el tiempo maximo que les queda hasta el final
+        // Calculo del tiempo maximo que les queda hasta el final
         int tiempoFinal = Math.max(obtenerTiempo(posRaton1, posFinal), obtenerTiempo(posRaton2, posFinal));
         segTotales = segTotales + tiempoFinal + SALIDA;
         System.out.println(segTotales);
@@ -58,10 +58,10 @@ public class MasListosQueElHambre_398 {
     public static void main(String[] args) {
 
         sc = new java.util.Scanner(System.in);
-        String entrada = sc.nextLine();
-        while (!entrada.equals("")) {
-            casosdeprueba(entrada);
+        String entrada = "";
+        while (sc.hasNext()) {
             entrada = sc.nextLine();
+            casosdeprueba(entrada);
         }
         sc.close();
         System.exit(0);
