@@ -23,14 +23,15 @@ public class MasListosQueElHambre_398 {
         int segRaton2;
         int segTotales = 0;
         int segPosInicialObjetivo;
-        while (N > 0 && N<100) {
+        while (N > 0 && N < 100) {
             posiciones = sc.nextLine().split(" ");
             posObjetivo[0] = Integer.parseInt(posiciones[0]);
             posObjetivo[1] = Integer.parseInt(posiciones[1]);
             segRaton1 = obtenerTiempo(posRaton1, posObjetivo);
             segRaton2 = obtenerTiempo(posRaton2, posObjetivo);
             segPosInicialObjetivo = obtenerTiempo(posInicial, posObjetivo);
-            if (segRaton1 <= segRaton2) {
+            if ((segRaton1 < segRaton2)
+                    || ((segRaton1 == segRaton2) && obtenerTiempo(posRaton1, posFinal) > obtenerTiempo(posRaton2, posFinal))) {
                 if (segPosInicialObjetivo > segTotales) {
                     segTotales = segTotales + segRaton1;
                 }
