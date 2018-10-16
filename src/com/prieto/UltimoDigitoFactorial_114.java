@@ -12,11 +12,11 @@ public class UltimoDigitoFactorial_114 {
 	}
 	
 	public static void casosdeprueba() {
-		int num = sc.nextInt();
-		
+		int num = Integer.parseInt(sc.nextLine());
 		int res = factorial(num);
 		
-		String.valueOf(res).substring(beginIndex, endIndex)
+		char lastDigit = String.valueOf(res).charAt(String.valueOf(res).length()-1);
+		System.out.println(lastDigit);
 		
 	}
 	
@@ -25,7 +25,7 @@ public class UltimoDigitoFactorial_114 {
 	public static void main(String[] args) {
 		
 		sc = new java.util.Scanner(System.in);
-		int numcasos = sc.nextInt();
+		int numcasos =  Integer.parseInt(sc.nextLine());
 		for (int i = 0; i < numcasos; i++) {
 			casosdeprueba();
 		}
