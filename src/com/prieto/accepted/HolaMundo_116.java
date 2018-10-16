@@ -1,4 +1,4 @@
-package com.prieto;
+package com.prieto.accepted;
 
 public class HolaMundo_116 {
 	static java.util.Scanner sc;
