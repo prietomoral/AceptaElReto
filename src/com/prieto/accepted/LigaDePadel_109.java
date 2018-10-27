@@ -1,4 +1,4 @@
-package com.prieto;
+package com.prieto.accepted;
 
 import java.util.Collections;
 import java.util.HashMap;
@@ -21,14 +21,14 @@ public class LigaDePadel_109 {
                 equipos.put(partido[0], 1);
             }
             if (equipos.containsKey(partido[2])) {
-                equipos.put(partido[2], equipos.get(partido[0]) + 1);
+                equipos.put(partido[2], equipos.get(partido[2]) + 1);
             } else {
                 equipos.put(partido[2], 1);
             }
             if (Integer.parseInt((partido[1])) > Integer.parseInt((partido[3]))) {
                 equipos.put(partido[0], equipos.get(partido[0]) + 1);
             } else {
-                equipos.put(partido[2], equipos.get(partido[0]) + 1);
+                equipos.put(partido[2], equipos.get(partido[2]) + 1);
             }
             partido = sc.nextLine().split(" ");
             numPartidos++;
