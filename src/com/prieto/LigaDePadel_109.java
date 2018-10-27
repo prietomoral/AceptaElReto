@@ -3,6 +3,7 @@ package com.prieto;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.Iterator;
+import java.util.Map;
 
 public class LigaDePadel_109 {
     static java.util.Scanner sc;
@@ -32,22 +33,40 @@ public class LigaDePadel_109 {
             partido = sc.nextLine().split(" ");
             numPartidos++;
         }
-        int maxValueInMap = (Collections.max(equipos.values()));
-        String ganador = "";
-        Iterator<String> iterator = equipos.keySet().iterator();
-        while (iterator.hasNext()) {
-            Object key = iterator.next();
-            if (equipos.get(key) == maxValueInMap) {
-                if (ganador.equals("")) {
-                    ganador = key.toString();
-                } else {
-                    ganador = "EMPATE";
+//        int maxValueInMap = (Collections.max(equipos.values()));
+//        String ganador = "";
+//        Iterator<String> iterator = equipos.keySet().iterator();
+//        while (iterator.hasNext()) {
+//            Object key = iterator.next();
+//            if (equipos.get(key) == maxValueInMap) {
+//                if (ganador.equals("")) {
+//                    ganador = key.toString();
+//                } else {
+//                    ganador = "EMPATE";
+//                }
+//            }
+//        }
+
+        if (numPartidos > 0) {
+            int actual = -1;
+            String ganador = "";
+            boolean empate = false;
+            for (Map.Entry<String, Integer> entry : equipos.entrySet()) {
+                if (entry.getValue() > actual) {
+                    ganador = entry.getKey();
+                    actual = entry.getValue();
+                    empate = false;
+                } else if (entry.getValue() == actual) {
+                    empate = true;
                 }
             }
-        }
-        int noDisputados = (equipos.size() * (equipos.size() - 1)) - numPartidos;
+            if (empate) {
+                ganador = "EMPATE";
+            }
+            int noDisputados = (equipos.size() * (equipos.size() - 1)) - numPartidos;
 
-        System.out.println(ganador + " " + String.valueOf(noDisputados));
+            System.out.println(ganador + " " + String.valueOf(noDisputados));
+        }
     }
 
     public static void main(String[] args) {
