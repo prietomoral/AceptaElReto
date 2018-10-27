@@ -1,4 +1,4 @@
-package com.prieto;
+package com.prieto.accepted;
 
 import java.util.Arrays;
 
@@ -42,8 +42,8 @@ public class CuadrosDiabolicosYEsotericos_101 {
         }
         cm2 = (4 * cm) / n;
 
-        System.out.println(cm);
-        System.out.println(cm2);
+        // System.out.println(cm);
+        // System.out.println(cm2);
     }
 
     private static boolean diabolico() {
@@ -75,8 +75,8 @@ public class CuadrosDiabolicosYEsotericos_101 {
     private static boolean esoterico(int n) {
         // condicion 1 - contiene todos los numero de 1 a n*n
         Arrays.sort(vector);
-        for (short numero = 1; numero <= n*n; numero++){
-            if (numero != vector[numero - 1]) 
+        for (short numero = 1; numero <= n * n; numero++) {
+            if (numero != vector[numero - 1])
                 return false;
         }
 
@@ -106,11 +106,10 @@ public class CuadrosDiabolicosYEsotericos_101 {
     public static void main(String[] args) {
         sc = new java.util.Scanner(System.in);
         String numero = sc.nextLine();
-        int n;
-        while (numero.length()==1 && !numero.equals("0")) {
-        	n= Integer.parseInt(numero);
+        int n = Integer.parseInt(numero);
+        while (n != 0) {
             llenarMatriz(n);
-            imprimirMatriz();
+            // imprimirMatriz();
             cmycm2(n);
             if (diabolico()) {
                 if (esoterico(n))
