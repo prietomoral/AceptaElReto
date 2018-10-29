@@ -1,6 +1,5 @@
 package com.prieto.accepted;
 
-
 public class Anio2013_174 {
     static java.util.Scanner sc;
 
